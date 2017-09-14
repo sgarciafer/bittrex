@@ -1,23 +1,21 @@
-PHP wrapper class for Bittrex API 
+Bittrex Robot 
 =======
 
-This class is a wrapper for the Bittrex altcoin trader platform API (https://bittrex.com/home/api). You can use it to check market values, do tradings with your wallet, deposit and withdraw coins, write your own trading bot, etc
+This is a Brittrex exchange Robot that scan the trades and history to detect overbuy/oversell situations using last 20 average values and standard deviations.
+One such situation is detected, Bittrex Robot will create a buy/sell order and then close it with a percentage of benefit.
+
+It include a PHP class wrapper for the Bittrex altcoin trader platform API (https://bittrex.com/home/api).
 
 Requirements
 ======
 * You obviously need a bittrex account.
 * You need to create an API key on your account settings
 
-Usage
+
+Installation
 ======
-	use edsonmedina\bittrex\Client;
-
-	$key = '4bec433f95e54562aeeefae92ebedb84'; // use your key and secret
-	$secret = '6171690af7364ea2a951dc85d00e1130';
-
-	$b = new Client ($key, $secret);
-	
-	$list = $b->getOrderHistory ();
+* Rename default.config.php and set the key and secret values.
+* Make a CRON execute the file XXXXX.php every X seconds.
 
 Documentation
 ======
