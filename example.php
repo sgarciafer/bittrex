@@ -1,13 +1,32 @@
 <?php
+	ini_set('display_errors', 1);
+	ini_set('display_startup_errors', 1);
+	error_reporting(E_ALL);
 
 	require __DIR__.'/src/edsonmedina/bittrex/Client.php';
+	require __DIR__.'/controller/controller.php';
+	require __DIR__.'/config.php';
 
 	use edsonmedina\bittrex\Client;
 
-	$key = '4bec433f95e54562aeeefae92ebedb84';
-	$secret = '6171690af7364ea2a951dc85d00e1130';
+	$bittrex = new Client ($key, $secret);
+	$controller = new controller($bittrex);
 
-	$b = new Client ($key, $secret);
-	var_dump ($b->getOrderHistory ());
-	
+	//var_dump($b->getOrderBook('USDT-ETH','both','5'));
+	$hist = $bittrex->getmarkethistory('USDT-ETH',30);
+	$controller->parseHistory($hist,5);
+	$hist = $controller->outputHistory($hist);
+
+	var_dump($hist); die();
+	/*
+	//var_dump ($b->getOrderHistory());
+	$OrderHistory = $b->getOrderHistory();
+	if(isset($OrderHistory[0])){
+		//insertTx($type, $pair = "USDT-ETH", $amount, $price, $balance, $status = "OPEN")
+		$c->insertTx($OrderHistory[0]->OrderType, $OrderHistory[0]->Exchange, $OrderHistory[0]->Quantity, $OrderHistory[0]->Limit, $OrderHistory[0]->Price, "OPEN");
+	}
+	//var_dump ($b->getBalance ("USDT"));
+
+*/
+
 	echo "\n\n";

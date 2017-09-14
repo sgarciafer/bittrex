@@ -1,0 +1,19 @@
+[1505290111] Error: INSERT INTO transactions ('type', 'pair', 'amount', 'price', 'balance', 'status')
+            VALUES ( 'LIMIT_SELL', 'USDT-ETH', '6.83817697', '1901.83377888', 'OPEN', 'OPEN')<br>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''type', 'pair', 'amount', 'price', 'balance', 'status')
+            VALUES ( 'LI' at line 1
+[1505290149] Error: INSERT INTO transactions ('type', 'pair', 'amount', 'price', 'balance', 'status')
+            VALUES ( 'LIMIT_SELL', 'USDT-ETH', '6.83817697', '1901.83377888', 'OPEN', 'OPEN')<br>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''type', 'pair', 'amount', 'price', 'balance', 'status')
+            VALUES ( 'LI' at line 1
+[1505290203] Error: INSERT INTO transactions (type, pair, amount, price, balance, status)
+            VALUES ( 'LIMIT_SELL', 'USDT-ETH', '6.83817697', '1901.83377888', 'OPEN', 'OPEN')<br>Incorrect integer value: 'OPEN' for column 'balance' at row 1
+[1505290237] Error: INSERT INTO transactions (type, pair, amount, price, balance, status)
+            VALUES ( 'LIMIT_SELL', 'USDT-ETH', '6.83817697', '1901.83377888', 'OPEN', 'OPEN')<br>Data truncated for column 'balance' at row 1
+[1505290601] Error: INSERT INTO transactions (type, pair, amount, price, balance, status)
+            VALUES ( 'LIMIT_SELL', 'USDT-ETH', '6.83817697', '1901.83377888', 'OPEN', 'OPEN')<br>Data truncated for column 'balance' at row 1
+[1505290615] Error: INSERT INTO transactions (type, pair, amount, price, balance, status)
+            VALUES ( 'LIMIT_SELL', 'USDT-ETH', '6.83817697', '1901.83377888', 'OPEN', 'OPEN')<br>Data truncated for column 'balance' at row 1
+[1505290667] Error: INSERT INTO transactions (type, pair, amount, price, balance, status)
+            VALUES ( 'LIMIT_SELL', 'USDT-ETH', '6.83817697', '1901.83377888', 'OPEN', 'OPEN')<br>Data truncated for column 'balance' at row 1
+[1505290756] New tx inserted ( OPEN ): LIMIT_SELL USDT-ETH 6.83817697 at 278.12 producing 1901.83377888
+[1505291231] New tx inserted ( OPEN ): LIMIT_BUY USDT-ETH 6.88376957 at 274.9 producing 1892.34825478
+[1505292775] New tx inserted ( OPEN ): LIMIT_BUY USDT-ETH 6.88376957 at 274.9 producing 1892.34825478
