@@ -13,11 +13,18 @@
 	$controller = new controller($bittrex);
 
 	//var_dump($b->getOrderBook('USDT-ETH','both','5'));
-	$hist = $bittrex->getmarkethistory('USDT-ETH',30);
-	$controller->parseHistory($hist,5);
-	$hist = $controller->outputHistory($hist);
 
-	var_dump($hist); die();
+	$tickers = $bittrex->getTickerByDate ("USDT-ETH", "fiveMin", time());
+	var_dump($tickers);
+
+	/*
+	$hist = $bittrex->getmarkethistory('USDT-ETH',50);
+	$histCooked = $controller->parseHistory($hist,2);
+	$controller->outputHistory($hist,2);
+	echo('<pre>'.print_r($histCooked,-1).'</pre>');
+	*/
+
+
 	/*
 	//var_dump ($b->getOrderHistory());
 	$OrderHistory = $b->getOrderHistory();

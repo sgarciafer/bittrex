@@ -10,6 +10,7 @@ namespace edsonmedina\bittrex;
 class Client
 {
 	private $baseUrl;
+	private $baseUrlv2;
 	private $apiVersion = 'v1.1';
 	private $apiKey;
 	private $apiSecret;
@@ -19,6 +20,7 @@ class Client
 		$this->apiKey    = $apiKey;
 		$this->apiSecret = $apiSecret;
 		$this->baseUrl   = 'https://bittrex.com/api/'.$this->apiVersion.'/';
+		$this->baseUrlv2   = 'https://bittrex.com/Api/v2.0/';
 	}
 
 	/**
@@ -28,9 +30,10 @@ class Client
 	 * @param bool $apiKey  use apikey or not
 	 * @return object
 	 */
-	private function call ($method, $params = array(), $apiKey = false)
+	private function call ($method, $params = array(), $apiKey = false, $version = 1)
 	{
-		$uri  = $this->baseUrl.$method;
+		if($version==1) $uri  = $this->baseUrl.$method;
+		else $uri  = $this->baseUrlv2.$method;
 
 		if ($apiKey == true) {
 			$params['apikey'] = $this->apiKey;
@@ -74,6 +77,19 @@ class Client
 	{
 		return $this->call ('public/getcurrencies');
 	}
+
+  /**
+	 * Get the shorter tickers by date.
+	 * ex: https://bittrex.com/Api/v2.0/pub/market/GetTicks?marketName=USDT-ETH&tickInterval=fiveMin&_=1499127220008
+	 * @param string $market	literal for the market (ex: BTC-LTC)
+	 * @param string $ticketInterval the time span to resume the values (ex: fiveMin)
+	 * @param int $time the starting timestamp to get values from.
+	 * @return array
+	 **/
+	 public function getTickerByDate ($market, $tickInterval, $time)
+	 {
+		 return $this->call ('pub/market/GetTicks', array('marketName' => $market,'tickInterval'=>$tickInterval, '_'=>$time),false,2);
+	 }
 
 	/**
 	 * Get the current tick values for a market.
@@ -137,7 +153,7 @@ class Client
 	}
 
 	/**
-	 * Place a limit buy order in a specific market. 
+	 * Place a limit buy order in a specific market.
 	 * Make sure you have the proper permissions set on your API keys for this call to work
 	 * @param string $market  literal for the market (ex: BTC-LTC)
 	 * @param float $quantity the amount to purchase
@@ -155,7 +171,7 @@ class Client
 	}
 
 	/**
-	 * Place a buy order in a specific market. 
+	 * Place a buy order in a specific market.
 	 * Make sure you have the proper permissions set on your API keys for this call to work
 	 * @param string $market  literal for the market (ex: BTC-LTC)
 	 * @param float $quantity the amount to purchase
@@ -171,7 +187,7 @@ class Client
 	}
 
 	/**
-	 * Place a limit sell order in a specific market. 
+	 * Place a limit sell order in a specific market.
 	 * Make sure you have the proper permissions set on your API keys for this call to work
 	 * @param string $market  literal for the market (ex: BTC-LTC)
 	 * @param float $quantity the amount to sell
@@ -189,7 +205,7 @@ class Client
 	}
 
 	/**
-	 * Place a sell order in a specific market. 
+	 * Place a sell order in a specific market.
 	 * Make sure you have the proper permissions set on your API keys for this call to work
 	 * @param string $market  literal for the market (ex: BTC-LTC)
 	 * @param float $quantity the amount to sell
@@ -205,7 +221,7 @@ class Client
 	}
 
 	/**
-	 * Cancel a buy or sell order 
+	 * Cancel a buy or sell order
 	 * @param string $uuid id of sell or buy order
 	 * @return array
 	 */
@@ -247,8 +263,8 @@ class Client
 	}
 
 	/**
-	 * Retrieve or generate an address for a specific currency. If one 
-	 * does not exist, the call will fail and return ADDRESS_GENERATING 
+	 * Retrieve or generate an address for a specific currency. If one
+	 * does not exist, the call will fail and return ADDRESS_GENERATING
 	 * until one is available.
 	 * @param string $currency literal for the currency (ex: LTC)
 	 * @return array
@@ -274,11 +290,11 @@ class Client
 			'quantity' => $quantity,
 			'address'  => $address,
 		);
-		
+
 		if ($paymentid) {
 			$params['paymentid'] = $paymentid;
 		}
-		
+
 		return $this->call ('account/withdraw', $params, true);
 	}
 
