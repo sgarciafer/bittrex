@@ -1,4 +1,4 @@
-Bittrex Robot 
+Bittrex "Bollinger Bands" Robot 
 =======
 
 This is a Brittrex exchange Robot that scan the trades and history to detect overbuy/oversell situations using last 20 average values and standard deviations.
